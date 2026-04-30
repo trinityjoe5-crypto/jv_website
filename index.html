@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jakub Viskupič</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #111; }
+
+    #slideshow {
+      position: fixed;
+      inset: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* subtle gradient vignette so logo/signature are always legible */
+    .vignette-top {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 140px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.28), transparent);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .vignette-bottom {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 140px;
+      background: linear-gradient(to top, rgba(0,0,0,0.28), transparent);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .logo {
+      position: fixed;
+      top: 28px;
+      left: 32px;
+      z-index: 10;
+      line-height: 0;
+    }
+
+    .logo img {
+      height: 46px;
+      width: auto;
+      filter: invert(1);
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      line-height: 0;
+    }
+
+    .signature img {
+      height: 46px;
+      width: auto;
+      filter: invert(1);
+      opacity: 0.75;
+    }
+
+    @media (max-width: 600px) {
+      .logo { top: 20px; left: 20px; }
+      .logo img { height: 36px; }
+      .signature { bottom: 20px; }
+      .signature img { height: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="slideshow"></div>
+
+  <div class="vignette-top"></div>
+  <div class="vignette-bottom"></div>
+
+  <a href="/" class="logo">
+    <img src="projects/Brand%20Assets/jv_logo_.png" alt="JV">
+  </a>
+
+  <div class="signature">
+    <img src="projects/Brand%20Assets/jv_signature_.png" alt="Jakub Viskupič">
+  </div>
+
+  <script>
+    const images = [
+      'projects/Penthouse%20V/penthouse_V_2.png',
+      'projects/Penthouse%20V/penthouse_V_8.png',
+      'projects/Penthouse%20V/penthouse_V_9.png',
+      'projects/Hidden%20House/hidden_house_living_room_w%3Agallery.png',
+      'projects/Hidden%20House/hidden_house_garen_view.png',
+      'projects/Hidden%20House/hidden_house_gallery%3Aliving_room.png',
+      'projects/Hidden%20House/hidden_house_entrance.png',
+      'projects/Eye%20Clinic%20A/clinicupscaled.png',
+      'projects/Eye%20Clinic%20A/eyeclinicupscaled2.png',
+      'projects/Eye%20Clinic%20B/eyeclinicupscaled3.png',
+      'projects/House%20With%20Fins/house_with_fins_1.png',
+      'projects/House%20With%20Fins/house_with_fins_2.png',
+      'projects/House%20With%20Fins/house_with_fins_3.png',
+      'projects/Casa%20Fly/casa_fly_4.png',
+      'projects/Casa%20Fly/casa_fly_5.png',
+      'projects/Casa%20Fly/casa_fly_6.png',
+    ];
+
+    const slideshow = document.getElementById('slideshow');
+
+    images.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide' + (i === 0 ? ' active' : '');
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      slide.appendChild(img);
+      slideshow.appendChild(slide);
+    });
+
+    const slides = slideshow.querySelectorAll('.slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3000);
+  </script>
+</body>
+</html>

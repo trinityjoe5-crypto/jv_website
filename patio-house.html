@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patio House — Jakub Viskupič</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; color: #000; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; -webkit-font-smoothing: antialiased; }
+    .logo { position: fixed; top: 28px; left: 32px; line-height: 0; z-index: 10; }
+    .logo img { height: 38px; width: auto; }
+    .back { position: fixed; top: 32px; right: 36px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #000; text-decoration: none; opacity: 0.35; transition: opacity 0.2s; z-index: 10; }
+    .back:hover { opacity: 1; }
+    main { max-width: 840px; margin: 0 auto; padding: 110px 40px 80px; }
+    .meta { display: flex; flex-wrap: wrap; margin-bottom: 28px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #bbb; }
+    .meta span { margin-right: 24px; }
+    .meta span::after { content: '/'; margin-left: 24px; color: #ddd; }
+    .meta span:last-child::after { content: ''; margin: 0; }
+    .title-area { display: flex; align-items: flex-start; margin-bottom: 12px; }
+    h1 { font-size: clamp(28px, 4.5vw, 46px); font-weight: 400; letter-spacing: -0.015em; line-height: 1.05; flex: 1; }
+    .subtitle { font-size: 14px; font-style: italic; color: #888; margin-bottom: 20px; }
+    .description { font-size: 14px; line-height: 1.9; color: #333; max-width: 620px; margin-bottom: 56px; }
+    .photos { display: flex; flex-direction: column; gap: 3px; }
+    .photos img { width: 100%; display: block; }
+    footer { padding: 52px 0 44px; display: flex; justify-content: center; border-top: 1px solid #f4f4f4; margin-top: 48px; }
+    footer img { height: 50px; opacity: 0.6; }
+    @media (max-width: 600px) { .logo img { height: 30px; } main { padding: 96px 24px 60px; } }
+  </style>
+</head>
+<body>
+  <a href="/" class="logo"><img src="projects/Brand%20Assets/jv_logo_.png" alt="JV"></a>
+  <a href="/" class="back">← Back</a>
+  <main>
+    <div class="meta">
+      <span>Private House</span>
+      <span>Bratislava, Slovakia</span>
+      <span>2016 — 2018</span>
+      <span>192 m²</span>
+    </div>
+    <div class="title-area">
+      <h1>Patio House</h1>
+    </div>
+    <p class="subtitle">Family house (Prievoz)</p>
+    <p class="description">This single-story home features an inner patio, transforming a former garden plot into a permanent retreat while preserving its tranquil, intimate atmosphere.</p>
+    <div class="photos">
+      <img src="projects/Patio%20House/patio_house_1.png" alt="">
+      <img src="projects/Patio%20House/patio_house_2.png" alt="">
+    </div>
+  </main>
+  <footer><img src="projects/Brand%20Assets/jv_signature_.png" alt="Jakub Viskupič"></footer>
+</body>
+</html>
