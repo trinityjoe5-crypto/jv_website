@@ -8,77 +8,44 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #111; }
 
-    #slideshow {
-      position: fixed;
-      inset: 0;
-    }
+    #slideshow { position: fixed; inset: 0; }
 
     .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1.2s ease;
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 1.2s ease;
     }
-
-    .slide.active {
-      opacity: 1;
-    }
-
+    .slide.active { opacity: 1; }
     .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center; display: block;
+    }
+    .slide-bottom img { object-position: center bottom; }
+    @media (max-width: 600px) {
+      .slide-bottom img { object-position: center center; }
     }
 
-    /* subtle gradient vignette so logo/signature are always legible */
     .vignette-top {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 140px;
+      position: fixed; top: 0; left: 0; right: 0; height: 140px;
       background: linear-gradient(to bottom, rgba(0,0,0,0.28), transparent);
-      pointer-events: none;
-      z-index: 5;
+      pointer-events: none; z-index: 5;
     }
-
     .vignette-bottom {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 140px;
+      position: fixed; bottom: 0; left: 0; right: 0; height: 140px;
       background: linear-gradient(to top, rgba(0,0,0,0.28), transparent);
-      pointer-events: none;
-      z-index: 5;
+      pointer-events: none; z-index: 5;
     }
 
     .logo {
-      position: fixed;
-      top: 28px;
-      left: 32px;
-      z-index: 10;
-      line-height: 0;
+      position: fixed; top: 28px; left: 32px;
+      z-index: 10; line-height: 0; cursor: pointer;
     }
-
-    .logo img {
-      height: 46px;
-      width: auto;
-      filter: invert(1);
-    }
+    .logo img { height: 46px; width: auto; filter: invert(1); }
 
     .signature {
-      position: fixed;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      line-height: 0;
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%); z-index: 10; line-height: 0;
     }
-
-    .signature img {
-      height: 46px;
-      width: auto;
-      filter: invert(1);
-      opacity: 0.75;
-    }
+    .signature img { height: 46px; width: auto; filter: invert(1); opacity: 0.75; }
 
     @media (max-width: 600px) {
       .logo { top: 20px; left: 20px; }
@@ -86,63 +53,269 @@
       .signature { bottom: 20px; }
       .signature img { height: 36px; }
     }
+
+    /* ── Contact modal ── */
+    .modal {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200; opacity: 0; pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .modal.open { opacity: 1; pointer-events: all; }
+
+    .card {
+      width: 320px;
+      background: #fff;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card-contacts {
+      padding: 36px 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-phone {
+      font-size: 15px;
+      font-weight: 700;
+      color: #555;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+    .card-phone:hover { color: #222; }
+
+    .card-email {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+    .card-email:hover { color: #222; }
+
+    .card-architect {
+      font-size: 12px;
+      color: #aaa;
+      letter-spacing: 0.01em;
+      margin-top: 2px;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: #ddd;
+      margin: 0 22px;
+    }
+
+    .card-logo-wrap {
+      padding: 34px 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .card-logo-wrap img {
+      height: 80px;
+      width: auto;
+    }
+
+    @media (max-width: 600px) {
+      .card { width: min(300px, 88vw); }
+    }
+
+    /* ── Info button ── */
+    .info-btn {
+      position: fixed; bottom: 28px; right: 32px;
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.55);
+      background: transparent; color: rgba(255,255,255,0.55);
+      font-size: 12px; font-style: italic;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      cursor: pointer; z-index: 10;
+      display: none; align-items: center; justify-content: center;
+      transition: border-color 0.18s, color 0.18s;
+      line-height: 1;
+    }
+    .info-btn:hover {
+      border-color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ── Info panel ── */
+    .info-panel {
+      position: fixed; bottom: 68px; right: 32px;
+      background: rgba(0,0,0,0.52);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 18px 22px 16px;
+      z-index: 15; opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease;
+      min-width: 190px;
+    }
+    .info-panel.open { opacity: 1; pointer-events: all; }
+
+    .info-names p {
+      font-size: 11px; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.82); line-height: 1.95;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .info-sep {
+      border: none; border-top: 1px solid rgba(255,255,255,0.15);
+      margin: 11px 0 10px;
+    }
+    .info-photo {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.45);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    @media (max-width: 600px) {
+      .info-btn { bottom: 20px; right: 20px; }
+      .info-panel { bottom: 60px; right: 20px; }
+    }
   </style>
 </head>
 <body>
 
   <div id="slideshow"></div>
-
   <div class="vignette-top"></div>
   <div class="vignette-bottom"></div>
 
-  <a href="/" class="logo">
+  <div class="logo" id="logoBtn">
     <img src="projects/Brand%20Assets/jv_logo_.png" alt="JV">
-  </a>
+  </div>
 
   <div class="signature">
     <img src="projects/Brand%20Assets/jv_signature_.png" alt="Jakub Viskupič">
   </div>
 
+  <!-- Contact modal -->
+  <div class="modal" id="modal">
+    <div class="card" id="card">
+      <div class="card-contacts">
+        <a class="card-phone" href="tel:+421903479736">+421 903 479 736</a>
+        <a class="card-email" href="mailto:mail@jakubviskupic.sk">mail@jakubviskupic.sk</a>
+        <p class="card-architect">autorizovaný architekt SKA</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-logo-wrap">
+        <img src="projects/Brand%20Assets/jv_logo_.png" alt="JV">
+      </div>
+    </div>
+  </div>
+
+  <!-- Info button -->
+  <button class="info-btn" id="infoBtn" aria-label="Project info">i</button>
+
+  <!-- Info panel -->
+  <div class="info-panel" id="infoPanel">
+    <div class="info-names" id="infoNames"></div>
+    <hr class="info-sep" id="infoSep">
+    <div class="info-photo" id="infoPhoto"></div>
+  </div>
+
   <script>
-    const images = [
-      'projects/Penthouse%20V/penthouse_V_2.png',
-      'projects/Penthouse%20V/penthouse_V_8.png',
-      'projects/Penthouse%20V/penthouse_V_9.png',
-      'projects/Hidden%20House/hidden_house_living_room_w%3Agallery.png',
-      'projects/Hidden%20House/hidden_house_garen_view.png',
-      'projects/Hidden%20House/hidden_house_gallery%3Aliving_room.png',
-      'projects/Hidden%20House/hidden_house_entrance.png',
-      'projects/Eye%20Clinic%20A/clinicupscaled.png',
-      'projects/Eye%20Clinic%20A/eyeclinicupscaled2.png',
-      'projects/Eye%20Clinic%20B/eyeclinicupscaled3.png',
-      'projects/House%20With%20Fins/house_with_fins_1.png',
-      'projects/House%20With%20Fins/house_with_fins_2.png',
-      'projects/House%20With%20Fins/house_with_fins_3.png',
-      'projects/Casa%20Fly/casa_fly_4.png',
-      'projects/Casa%20Fly/casa_fly_5.png',
-      'projects/Casa%20Fly/casa_fly_6.png',
-    ];
+    const infoData = {
+      B: { team: ['Rado Buzinkay','Andrej Ferenčík','Jakub Viskupič','Martin Machala'], year: 2023, photo: 'Matej Hakár' },
+      E: { team: ['Rado Buzinkay','Andrej Ferenčík','Jakub Viskupič','Gabika Masláková','Helena Kučerová'], year: 2019, photo: 'Roman Dibarbora' },
+      F: { team: ['Rado Buzinkay','Andrej Ferenčík','Jakub Viskupič','Karol Dudík'], year: 2013, photo: 'Jakub Dvořák' },
+      K: { team: ['Rado Buzinkay','Andrej Ferenčík','Jakub Viskupič','Matúš Grega Jakub'] },
+    };
 
-    const slideshow = document.getElementById('slideshow');
+    const infoMap = {
+      'B_1.jpg': infoData.B, 'B_3.jpg': infoData.B, 'FF_2.jpg.webp': infoData.B,
+      'E_1.png': infoData.E, 'E_2.jpg': infoData.E, 'E_3.jpg': infoData.E,
+      'F_1.png': infoData.F, 'F_2.png': infoData.F, 'F_3.png': infoData.F, 'F_4.png': infoData.F, 'F_5.png': infoData.F,
+      'K_1.png': infoData.K, 'K_2.png': infoData.K,
+    };
 
-    images.forEach((src, i) => {
-      const slide = document.createElement('div');
-      slide.className = 'slide' + (i === 0 ? ' active' : '');
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = '';
-      slide.appendChild(img);
-      slideshow.appendChild(slide);
+    const infoBtn   = document.getElementById('infoBtn');
+    const infoPanel = document.getElementById('infoPanel');
+    const infoNames = document.getElementById('infoNames');
+    const infoSep   = document.getElementById('infoSep');
+    const infoPhoto = document.getElementById('infoPhoto');
+    const camIcon = `<svg width="13" height="11" viewBox="0 0 14 12" fill="currentColor"><path d="M5 0 4 2H1C.45 2 0 2.45 0 3v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1h-3L9 0H5zm2 3a3 3 0 1 1 0 6A3 3 0 0 1 7 3z"/></svg>`;
+
+    const logoBtn = document.getElementById('logoBtn');
+    const modal   = document.getElementById('modal');
+    const card    = document.getElementById('card');
+
+    logoBtn.addEventListener('click', () => modal.classList.add('open'));
+    modal.addEventListener('click', e => {
+      if (!card.contains(e.target)) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        modal.classList.remove('open');
+        infoPanel.classList.remove('open');
+      }
     });
 
-    const slides = slideshow.querySelectorAll('.slide');
-    let current = 0;
+    (async () => {
+      const raw = await fetch('slideshow.json').then(r => r.json());
+      const images = raw.map(item => ({
+        src: 'projects/FinalWebImg/' + item.src,
+        bottom: item.bottom || false,
+        info: infoMap[item.src] || null,
+      }));
 
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 3000);
+      const slideshowEl = document.getElementById('slideshow');
+      images.forEach((item, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide' + (i === 0 ? ' active' : '') + (item.bottom ? ' slide-bottom' : '');
+        const img = document.createElement('img');
+        img.src = item.src; img.alt = '';
+        slide.appendChild(img);
+        slideshowEl.appendChild(slide);
+      });
+
+      const slides = slideshowEl.querySelectorAll('.slide');
+      let current = 0;
+
+      function updateInfo(idx) {
+        const item = images[idx];
+        if (item && item.info) {
+          infoBtn.style.display = 'flex';
+          infoNames.innerHTML = item.info.team.map(n => `<p>${n}</p>`).join('');
+          if (item.info.year) {
+            infoSep.style.display = '';
+            infoPhoto.style.display = '';
+            infoPhoto.innerHTML = `<span>${item.info.year}</span>${camIcon}<span>${item.info.photo}</span>`;
+          } else {
+            infoSep.style.display = 'none';
+            infoPhoto.style.display = 'none';
+          }
+        } else {
+          infoBtn.style.display = 'none';
+          infoPanel.classList.remove('open');
+        }
+      }
+
+      updateInfo(0);
+
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+        infoPanel.classList.remove('open');
+        updateInfo(current);
+      }, 3000);
+
+      infoBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        infoPanel.classList.toggle('open');
+      });
+
+      document.addEventListener('click', e => {
+        if (!infoPanel.contains(e.target) && e.target !== infoBtn) {
+          infoPanel.classList.remove('open');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
