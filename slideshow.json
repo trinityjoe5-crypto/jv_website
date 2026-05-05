@@ -1,27 +1,78 @@
 [
-  { "src": "A_1.jpg" },
-  { "src": "A_2.jpg" },
-  { "src": "A_3.png", "bottom": true },
-  { "src": "A_4.jpg" },
-  { "src": "A_5.png" },
-  { "src": "B_1.jpg" },
-  { "src": "B_3.jpg" },
-  { "src": "C_1.png" },
-  { "src": "C_2.png" },
-  { "src": "C_3.png" },
-  { "src": "D_1.jpg" },
-  { "src": "E_1.png" },
-  { "src": "E_2.jpg" },
-  { "src": "E_3.jpg" },
-  { "src": "F_1.png" },
-  { "src": "F_2.png" },
-  { "src": "F_3.png" },
-  { "src": "F_4.png" },
-  { "src": "F_5.png" },
-  { "src": "FF_2.jpg.webp" },
-  { "src": "G_1.png" },
-  { "src": "G_2.png" },
-  { "src": "K_1.png" },
-  { "src": "K_2.png" },
-  { "src": "L_1.png" }
+  {
+    "src": "A_1.webp"
+  },
+  {
+    "src": "A_2.webp"
+  },
+  {
+    "src": "A_3.webp",
+    "bottom": true
+  },
+  {
+    "src": "A_4.webp"
+  },
+  {
+    "src": "A_5.webp"
+  },
+  {
+    "src": "B_1.webp"
+  },
+  {
+    "src": "B_3.webp"
+  },
+  {
+    "src": "C_1.webp"
+  },
+  {
+    "src": "C_2.webp"
+  },
+  {
+    "src": "C_3.webp"
+  },
+  {
+    "src": "D_1.webp"
+  },
+  {
+    "src": "E_1.webp"
+  },
+  {
+    "src": "E_2.webp"
+  },
+  {
+    "src": "E_3.webp"
+  },
+  {
+    "src": "F_1.webp"
+  },
+  {
+    "src": "F_2.webp"
+  },
+  {
+    "src": "F_3.webp"
+  },
+  {
+    "src": "F_4.webp"
+  },
+  {
+    "src": "F_5.webp"
+  },
+  {
+    "src": "FF_2.jpg.webp"
+  },
+  {
+    "src": "G_1.webp"
+  },
+  {
+    "src": "G_2.webp"
+  },
+  {
+    "src": "K_1.webp"
+  },
+  {
+    "src": "K_2.webp"
+  },
+  {
+    "src": "L_1.webp"
+  }
 ]
